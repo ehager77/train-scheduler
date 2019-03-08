@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+
+<html lang="en-us">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <title>Train Scheduler</title>
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+        crossorigin="anonymous">
+    <link rel="stylesheet" href="assets/css/style.css">
+
+    <!-- Added Moment JS -->
+    <script src="https://cdn.jsdelivr.net/momentjs/2.12.0/moment.min.js"></script>
+
+</head>
+
+<body>
+    <div id="header" class="container border">
+        <h1>Engine-eous Train Scheduler</h1>
+    </div>
+    <table class="table table-dark">
+        <thead>
+            <th scope="col">Train Name</th>
+            <th scope="col">Destination</th>
+            <th scope="col">Frequency (mins)</th>
+            <th scope="col">Next Train</th>
+            <th scope="cpl">ETA</th>
+        </thead>
+        <tbody>
+            <tr id="new-row"></tr>
+        </tbody>
+    </table>
+    <div id="form-div">
+        <p>Add New Train</p>
+        <div class="form-row">
+            <span class="input-label">Train Name</span>
+            <input class="form-control" type="text" placeholder="Millennium Falcon">
+
+        </div>
+        <div class="form-row">
+            <span class="input-label">Destination</span>
+            <input class="form-control" type="text" placeholder="Cloud City">
+
+        </div>
+        <div class="form-row">
+            <span class="input-label">First Train Time (e.g 00:00, 08:00, 15:00)</span>
+            <input class="form-control" type="text" placeholder="HH:MM">
+
+        </div>
+        <div class="form-row">
+            <span class="input-label">Frequency (mins)</span>
+            <input class="form-control" type="text" placeholder="20">
+
+        </div>
+        <div class="row justify-content-end">
+            <button class="btn btn-primary">
+                <span>Add Train</span>
+            </button>
+        </div>
+    </div>
+
+    </div>
+
+
+
+
+    <!-- Script -->
+
+    <script>
+        // Assume the following situations.
+
+        // (TEST 1)
+        // First Train of the Day is 3:00 AM
+        // Assume Train comes every 3 minutes.
+        // Assume the current time is 3:16 AM....
+        // What time would the next train be...? (Use your brain first)
+        // It would be 3:18 -- 2 minutes away
+
+        // (TEST 2)
+        // First Train of the Day is 3:00 AM
+        // Assume Train comes every 7 minutes.
+        // Assume the current time is 3:16 AM....
+        // What time would the next train be...? (Use your brain first)
+        // It would be 3:21 -- 5 minutes away
+
+
+        // ==========================================================
+
+        // Solved Mathematically
+        // Test case 1:
+        // 16 - 00 = 16
+        // 16 % 3 = 1 (Modulus is the remainder)
+        // 3 - 1 = 2 minutes away
+        // 2 + 3:16 = 3:18
+
+        // Solved Mathematically
+        // Test case 2:
+        // 16 - 00 = 16
+        // 16 % 7 = 2 (Modulus is the remainder)
+        // 7 - 2 = 5 minutes away
+        // 5 + 3:16 = 3:21
+
+        // Assumptions
+        var tFrequency = 3;
+
+        // Time is 3:30 AM
+        var firstTime = "03:30";
+
+        // First Time (pushed back 1 year to make sure it comes before current time)
+        var firstTimeConverted = moment(firstTime, "HH:mm").subtract(1, "years");
+        console.log(firstTimeConverted);
+
+        // Current Time
+        var currentTime = moment();
+        console.log("CURRENT TIME: " + moment(currentTime).format("hh:mm"));
+
+        // Difference between the times
+        var diffTime = moment().diff(moment(firstTimeConverted), "minutes");
+        console.log("DIFFERENCE IN TIME: " + diffTime);
+
+        // Time apart (remainder)
+        var tRemainder = diffTime % tFrequency;
+        console.log(tRemainder);
+
+        // Minute Until Train
+        var tMinutesTillTrain = tFrequency - tRemainder;
+        console.log("MINUTES TILL TRAIN: " + tMinutesTillTrain);
+
+        // Next Train
+        var nextTrain = moment().add(tMinutesTillTrain, "minutes");
+        console.log("ARRIVAL TIME: " + moment(nextTrain).format("hh:mm"));
+    </script>
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
+
+</body>
+
+</html>

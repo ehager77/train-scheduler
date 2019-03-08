@@ -1,0 +1,53 @@
+#header{
+    padding-top:20px;
+    padding-bottom: 20px;
+    background: darkolivegreen;
+    text-align: center;
+    color: white;
+    font-family: 'Times New Roman', Times, serif;
+    margin-bottom: 10px;
+}
+
+h1{
+    padding-top:20px;
+    background: brown;
+    height: 100px;
+}
+
+body{
+    padding-left:10%;
+    padding-right:10%;
+}
+
+#form-header{
+    background-color: brown;
+}
+
+#form-div{
+    border: grey solid 2px;
+    border-radius: 7px;
+}
+
+p{
+    padding-left: 7px;
+    padding-top: 7px;
+    padding-bottom: 7px;
+    background: brown;
+    font-size: 14px;
+    font-weight: 700;
+    color: white;
+}
+
+.form-row{
+    margin: 2%;
+}
+
+.input-label{
+    font-weight: 700;
+    font-size: 14px;
+    margin-bottom: 10px;
+}
+
+button{
+    margin: 4%;
+}
