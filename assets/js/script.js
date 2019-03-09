@@ -28,7 +28,7 @@ $(document).ready(function () {
         var firstTrain = $("#firstTrain").val().trim();
         var trainFreq = $("#trainFrequency").val().trim();
 
-        // Creates local "temporary" object for holding train data
+        // Creates object for holding train data
         var newTrain = {
             name: trainName,
             destination: destination,
@@ -41,7 +41,7 @@ $(document).ready(function () {
 
         // Clears all of the text-boxes
         $("#trainName").val("");
-        $("#dest-input").val("");
+        $("#destination").val("");
         $("#firstTrain").val("");
         $("#trainFrequency").val("");
     });
@@ -55,10 +55,6 @@ $(document).ready(function () {
         var trainName = childSnapshot.val().name;
         var destination = childSnapshot.val().destination;
         var trainFreq = childSnapshot.val().frequency;
-
-
-        // Declare variable
-        var trainFreq;
 
         // Time is to be entered on the entry form
         var firstTime = 0;
@@ -88,7 +84,7 @@ $(document).ready(function () {
 
 
         // Add each train's data into the table
-        $("#train-table > tbody").append("<tr><td>" + trainName + "</td><td>" + destination + "</td><td>" + trainFreq +
+        $("#train-table").append("<tr><td>" + trainName + "</td><td>" + destination + "</td><td>" + trainFreq +
             "</td><td>" + moment(nextTrain).format("HH:mm") + "</td><td>" + tMinutesTillTrain + "</td></tr>");
     });
 
