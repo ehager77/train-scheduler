@@ -46,4 +46,4 @@ console.log("ARRIVAL TIME: " + moment(nextTrain).format("HH:mm"));
 
 ## In  Action
 
-![train gif](http://www.giphy.com/gifs/Y0wRJkRe58t2BgERZX)
+![train gif](https://media.giphy.com/media/3kIXO3t7t9aeX0aYfn/giphy.gif)
